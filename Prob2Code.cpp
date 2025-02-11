@@ -15,6 +15,11 @@ int main() {
     std::cout << "Row must be less than 30 and even!" << '\n';
     return 1;
   }
+  // checks if input is a number or not
+  if (!std::cin) {
+    std::cout << "Input must be a number!" << '\n';
+    return 1;
+  }
   // create array for row
   int row[row_length];
 
@@ -22,6 +27,11 @@ int main() {
   for (int i = 0; i < row_length; i++) {
     std::cout << "enter number at index " << i << ": ";
     std::cin >> row[i];
+    // same integer check from above
+    if (!std::cin) {
+      std::cout << "Input must be a number!" << '\n';
+      return 1;
+    }
   }
 
   // main algorithm block
