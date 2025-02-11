@@ -20,13 +20,16 @@ int main() {
     std::cout << "Input must be a number!" << '\n';
     return 1;
   }
-  // create array for row
+  // create array for row operations
   int row[row_length];
-
+  // create row that doesnt get changed for print later
+  int inprow[row_length];
   // prompt user to add numbers to row
   for (int i = 0; i < row_length; i++) {
     std::cout << "enter number at index " << i << ": ";
     std::cin >> row[i];
+
+    inprow[i] = row[i];
     // same integer check from above
     if (!std::cin) {
       std::cout << "Input must be a number!" << '\n';
@@ -45,6 +48,7 @@ int main() {
         if (row[x] == temp) {
           row[j] = temp;
           row[x] = temp2;
+          std::cout << "row[" << j << "]" << " needs to be swapped with row[" << x << "]" << '\n';
           swaps++;
           break;
         }
@@ -52,13 +56,22 @@ int main() {
     }
   }
 
-  // prints newly swapped row and number of swaps performed
-  std::cout << "swapped row = [ ";
+  // prints both input row, and newly swapped row and number of swaps performed
+  std::cout << "Input row = [ ";
   for (int k = 0; k < row_length; k++) {
-    std::cout << row[k] << " ";
+    std::cout << inprow[k] << " ";
   }
-  std::cout << "]" << "\n";
-
+  std::cout << "]" << "\n" << "-----------------------------------" << '\n';
   std::cout << "Number of swaps: " << swaps << '\n';
+  if (swaps == 0) {
+    std::cout << "All couples are already seated side by side" << '\n';
+  } else {
+    std::cout << "swapped row = [ ";
+    for (int k = 0; k < row_length; k++) {
+      std::cout << row[k] << " ";
+    }
+    std::cout << "]" << "\n";
+  }
+
   return 0;
 }
