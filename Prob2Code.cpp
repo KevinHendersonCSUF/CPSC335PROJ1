@@ -1,3 +1,10 @@
+// Project 1, Problem 2
+
+// Language used: C++
+
+// Names:
+// Kevin Henderson, Bryan Tran, Kenny Ly, Nathan Preheim
+//-----------------------------------------------------------------------
 #include <iostream>
 #include <string>
 #include <vector>
@@ -37,7 +44,7 @@ int main() {
     }
   }
 
-  // main algorithm block
+  // main swap operation block
   for (int j = 1; j < row_length; j++) {
     if (row[j] != row[j - 1] + 1) {
       // assign the elements to be swapped to temp variables to keep track
@@ -48,7 +55,8 @@ int main() {
         if (row[x] == temp) {
           row[j] = temp;
           row[x] = temp2;
-          std::cout << "row[" << j << "]" << " needs to be swapped with row[" << x << "]" << '\n';
+          std::cout << "row[" << j << "]" << " needs to be swapped with row["
+                    << x << "]" << '\n';
           swaps++;
           break;
         }
