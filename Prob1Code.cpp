@@ -116,10 +116,30 @@ int main() {
     }
     std::cout << "-----------------------------------" << '\n';
     std::cout << "Swaps: " << minSwapsCouples(row) << '\n';
-    for (int k : row) {
-      std::cout << k;
+  // print the row after swap
+  std::cout << "[";
+  int pair = 0;
+  for (int k = 0; k < row.size(); k++) {
+    if (pair == 0) {
+      std::cout << "(";
     }
-    std::cout << '\n';
+    std::cout << row[k];
+    pair++;
+    if (pair == 1) {
+      std::cout << ", ";
+    }
+    if (pair == 2) {
+      // check if couples follow the (2n-2, 2n-1) format stated in project
+      // instructions, if not, stop printing and print error message
+      if (row[k - 1] != row[k] + 1 && row[k - 1] != row[k] - 1) {
+        std::cout << '\n' << "Couples must follow (2n-2, 2n-1)!" << '\n';
+        return 1;
+      }
+      std::cout << ")";
+      pair = 0;
+    }
   }
+  std::cout << "]" << '\n';
   return 0;
+}
 }
