@@ -5,7 +5,7 @@
 // Names:
 // Kevin Henderson, Bryan Tran, Kenny Ly, Nathan Preheim
 //-----------------------------------------------------------------------
-// FOR NOW, THIS ONE IS CONFIGURED TO TEST BOTH ALGORITHMS
+
 #include <iostream>
 #include <string>
 #include <vector>
