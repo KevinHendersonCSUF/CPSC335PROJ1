@@ -6,7 +6,6 @@
 // Kevin Henderson, Bryan Tran, Kenny Ly, Nathan Preheim
 //-----------------------------------------------------------------------
 // FOR NOW, THIS ONE IS CONFIGURED TO TEST BOTH ALGORITHMS
-#include <algorithm>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -30,116 +29,23 @@ int findPreferredStartingCity(const std::vector<int>& city_distances,
   }
   return start_index;
 }
-// Algorithm 2
-// BUGS: INPUT [8, 1, 4, 3, 0, 7] IS NOT PRODUCING CORRECT OUTPUT
-int minSwapsCouples(std::vector<int>& row) {
-  int n = row.size();
-  int swaps = 0;
-
-  // Create a map
-  std::vector<int> pos(n, 0);
-  for (int i = 0; i < n; i++) {
-    pos[row[i]] = i;
-  }
-
-  // Process seating in pairs
-  for (int i = 0; i < n; i += 2) {
-    int first_person = row[i];
-    // XOR
-    // If first_person is even, partner = first_person + 1; if odd, partner =
-    // first_person - 1.
-    int partner = first_person ^ 1;
-
-    // Base case
-    if (row[i + 1] != partner) {
-      int partner_index = pos[partner];
-      std::swap(row[i + 1], row[partner_index]);
-      // Update the positions in the mapping.
-      pos[row[partner_index]] = partner_index;
-      pos[row[i + 1]] = i + 1;
-      swaps++;
-    }
-  }
-
-  return swaps;
-}
 
 int main() {
-  int choice = 0;
-  std::cout << "Which Algorithm would you like to test(1 or 2): ";
-  std::cin >> choice;
-  if (choice == 1) {
     std::vector<int> distance;
+    distance.push_back(15);
     distance.push_back(5);
+    distance.push_back(15);
     distance.push_back(25);
-    distance.push_back(15);
     distance.push_back(10);
-    distance.push_back(15);
     std::vector<int> fuel;
+    fuel.push_back(3);
+    fuel.push_back(0);
     fuel.push_back(1);
     fuel.push_back(2);
     fuel.push_back(1);
-    fuel.push_back(0);
-    fuel.push_back(3);
     int mpg = 10;
     std::cout << "preferred starting city is: "
               << findPreferredStartingCity(distance, fuel, mpg) << '\n';
-  } else {
-    int row_length = 0;
-    int temp = 0;
 
-    // prompt user for length of row
-    std::cout << "How long is the row: ";
-    std::cin >> row_length;
-    if (row_length > 30 || row_length % 2 != 0) {
-      std::cout << "Row must be less than 30 and even!" << '\n';
-      return 1;
-    }
-    // checks if input is a number or not
-    if (!std::cin) {
-      std::cout << "Input must be a number!" << '\n';
-      return 1;
-    }
-
-    std::vector<int> row;
-    // prompt user to add numbers to row
-    for (int i = 0; i < row_length; i++) {
-      std::cout << "enter number at index " << i << ": ";
-      std::cin >> temp;
-      row.push_back(temp);
-
-      // same integer check from above
-      if (!std::cin) {
-        std::cout << "Input must be a number!" << '\n';
-        return 1;
-      }
-    }
-    std::cout << "-----------------------------------" << '\n';
-    std::cout << "Swaps: " << minSwapsCouples(row) << '\n';
-  // print the row after swap
-  std::cout << "[";
-  int pair = 0;
-  for (int k = 0; k < row.size(); k++) {
-    if (pair == 0) {
-      std::cout << "(";
-    }
-    std::cout << row[k];
-    pair++;
-    if (pair == 1) {
-      std::cout << ", ";
-    }
-    if (pair == 2) {
-      // check if couples follow the (2n-2, 2n-1) format stated in project
-      // instructions, if not, stop printing and print error message
-      if (row[k - 1] != row[k] + 1 && row[k - 1] != row[k] - 1) {
-        std::cout << '\n' << "Couples must follow (2n-2, 2n-1)!" << '\n';
-        return 1;
-      }
-      std::cout << ")";
-      pair = 0;
-    }
-  }
-  std::cout << "]" << '\n';
   return 0;
-}
 }

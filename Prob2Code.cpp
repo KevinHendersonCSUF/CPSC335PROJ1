@@ -76,10 +76,10 @@ int main() {
   int temp = 0;
 
   // prompt user for length of row
-  std::cout << "How long is the row: ";
+  std::cout << "Enter row length: ";
   std::cin >> row_length;
-  if (row_length > 30 || row_length % 2 != 0) {
-    std::cout << "Row must be less than 30 and even!" << '\n';
+  if (row_length >= 2 * 30 || row_length % 2 != 0) {
+    std::cout << "Row must be less than or equal to 30 and even!" << '\n';
     return 1;
   }
   // checks if input is a number or not
