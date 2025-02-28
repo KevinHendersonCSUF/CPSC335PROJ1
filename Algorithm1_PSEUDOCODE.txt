@@ -1,0 +1,10 @@
+FUNCTION findPreferredStartingCity(city_distances, fuel, mpg):
+    start_index ← 0
+    surplus ← 0
+    FOR i FROM 0 TO length(city_distances) - 1 DO:
+         net_gain ← fuel[i] * mpg - city_distances[i]
+         surplus ← surplus + net_gain
+         IF surplus < 0 THEN:
+             start_index ← i + 1
+             surplus ← 0
+    RETURN start_index
