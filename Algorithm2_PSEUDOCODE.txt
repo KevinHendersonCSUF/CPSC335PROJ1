@@ -1,0 +1,17 @@
+FUNCTION minSwapsCouples(row):
+    n ← length(row)            // total number of seats; note: n is even
+    CREATE array pos of size n   // pos[x] stores the current seat index of person x
+    FOR i FROM 0 TO n - 1 DO:
+         pos[row[i]] ← i
+
+    swaps ← 0
+    FOR i FROM 0 TO n - 1 STEP 2 DO:
+         first_person ← row[i]
+         partner ← first_person XOR 1   // if even, partner = first_person + 1; if odd, partner = first_person - 1
+         IF row[i+1] ≠ partner THEN:
+             partner_index ← pos[partner]
+             SWAP row[i+1] WITH row[partner_index]
+             UPDATE pos[row[i+1]] ← i+1
+             UPDATE pos[row[partner_index]] ← partner_index
+             swaps ← swaps + 1
+    RETURN swaps
