@@ -10,34 +10,7 @@
 #include <string>
 #include <vector>
 
-// OLD ALGORITHM JUST IN CASE (DELETE BEFORE TURNING IN)
-// int Swapper(std::vector<int>& row) {
-//   int temp = 0;
-//   int swaps = 0;
-//   for (int j = 0; j < row.size(); j++) {
-//     // checks to see if individual is sitting next to its partner, if not,
-//     // assign whoevers next to it to temp value for swap
-//     if (row[j + 1] != row[j] + 1 && row[j + 1] != row[j] - 1) {
-//       temp = row[j + 1];
-//       // iterate through the individuals to find which ones to swap
-//       for (int x = 0; x <= row.size(); x++) {
-//         if (row[x] == row[j] + 1 || row[x] == row[j] - 1) {
-//           row[j + 1] = row[x];
-//           row[x] = temp;
-//           swaps++;
-//                     // prints what individuals are swapped
-//           std::cout << "row[" << j + 1 << "] must be swapped with row[" << x
-//                     << "]" << '\n';
-//           break;
-//         }
-//       }
-//     }
-//     // skips individual that was just swapped
-//     j++;
-//   }
-//   return swaps;
-// }
-// NEW Algorithm 2
+// Algorithm 2
 // BUGS: INPUTs [8, 1, 4, 3, 0, 7], [43, 45, 0, 44, 1, 46] IS NOT PRODUCING
 // CORRECT OUTPUT
 int minSwapsCouples(std::vector<int>& row) {
