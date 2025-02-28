@@ -31,21 +31,42 @@ int findPreferredStartingCity(const std::vector<int>& city_distances,
 }
 
 int main() {
-    std::vector<int> distance;
-    distance.push_back(15);
-    distance.push_back(5);
-    distance.push_back(15);
-    distance.push_back(25);
-    distance.push_back(10);
-    std::vector<int> fuel;
-    fuel.push_back(3);
-    fuel.push_back(0);
-    fuel.push_back(1);
-    fuel.push_back(2);
-    fuel.push_back(1);
-    int mpg = 10;
-    std::cout << "preferred starting city is: "
-              << findPreferredStartingCity(distance, fuel, mpg) << '\n';
+  int city = 0;
+  int mpg = 0;
+  std::cout << "how many cities: ";
+  std::cin >> city;
+  std::vector<int> distance;
+  // push distance from city i to city i+1
+  for (int i = 0; i < city; i++) {
+    int dist = 0;
+    if (i == city - 1) {
+      std::cout << "Enter distance from city " << i << " back to city "
+                << city - i - 1 << ": ";
+      std::cin >> dist;
+    } else {
+      std::cout << "Enter distance from city " << i << " to city " << i + 1
+                << ": ";
+      std::cin >> dist;
+    }
+    distance.push_back(dist);
+  }
+  std::cout << "-------------------------------------------------" << '\n';
+  // push the amount of fuel available in each city
+  std::vector<int> fuel;
+  for (int j = 0; j < distance.size(); j++) {
+    int gas = 0;
+    std::cout << "Enter amoount of fuel available in city " << j << ": ";
+    std::cin >> gas;
+    fuel.push_back(gas);
+  }
+  std::cout << "-------------------------------------------------" << '\n';
+  // set the mpg for the car
+  std::cout << "Enter the mpg: ";
+  std::cin >> mpg;
+  std::cout << "-------------------------------------------------" << '\n';
+
+  std::cout << "preferred starting city is: "
+            << findPreferredStartingCity(distance, fuel, mpg) << '\n';
 
   return 0;
 }

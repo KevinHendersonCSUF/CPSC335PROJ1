@@ -38,7 +38,8 @@
 //   return swaps;
 // }
 // NEW Algorithm 2
-// BUGS: INPUTs [8, 1, 4, 3, 0, 7], [43, 45, 0, 44, 1, 46] IS NOT PRODUCING CORRECT OUTPUT
+// BUGS: INPUTs [8, 1, 4, 3, 0, 7], [43, 45, 0, 44, 1, 46] IS NOT PRODUCING
+// CORRECT OUTPUT
 int minSwapsCouples(std::vector<int>& row) {
   int n = row.size();
   int swaps = 0;
@@ -74,7 +75,7 @@ int minSwapsCouples(std::vector<int>& row) {
 int main() {
   int row_length = 0;
   int temp = 0;
-
+  std::vector<int> row;
   // prompt user for length of row
   std::cout << "Enter row length: ";
   std::cin >> row_length;
@@ -87,8 +88,6 @@ int main() {
     std::cout << "Input must be a number!" << '\n';
     return 1;
   }
-
-  std::vector<int> row;
   // prompt user to add numbers to row
   for (int i = 0; i < row_length; i++) {
     std::cout << "enter number at index " << i << ": ";
