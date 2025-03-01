@@ -18,33 +18,45 @@ int minSwapsCouples(std::vector<int>& row) {
   int n = row.size();
   int swaps = 0;
 
-  // Create a map
+  // Build a mapping from each person's value to their index.
   std::unordered_map<int, int> pos;
   for (int i = 0; i < n; i++) {
     pos[row[i]] = i;
   }
 
-  // Process seating in pairs
+  // Process each pair in the row.
   for (int i = 0; i < n; i += 2) {
-    int first_person = row[i];
-    // XOR
-    // If first_person is even, partner = first_person + 1; if odd, partner =
-    // first_person - 1.
-    int partner = first_person ^ 1;
+    int personA = row[i];
+    // Calculate the correct partner for personA using XOR:
+    // If personA is even, partner = personA + 1; if odd, partner = personA - 1.
+    int correctPartner = personA ^ 1;
 
-    // Base case
-    if (row[i + 1] != partner) {
-      int partner_index = pos[partner];
-      std::swap(row[i + 1], row[partner_index]);
-      // Update the positions in the mapping.
-      pos[row[partner_index]] = partner_index;
+    // If the next person is not the correct partner, perform a swap.
+    if (row[i + 1] != correctPartner) {
+      // Check that the correct partner exists in the mapping.
+      if (pos.find(correctPartner) == pos.end()) {
+        std::cout << "Error: partner " << correctPartner 
+                  << " not found for person " << personA << std::endl;
+        return -1;
+      }
+      
+      // Get the index where the correct partner is currently located.
+      int partnerIndex = pos[correctPartner];
+      
+      // Swap the person at i+1 with the correct partner.
+      std::swap(row[i + 1], row[partnerIndex]);
+      
+      // Update the mapping with the new positions.
+      pos[row[partnerIndex]] = partnerIndex;
       pos[row[i + 1]] = i + 1;
+      
       swaps++;
     }
   }
 
   return swaps;
 }
+
 
 int main() {
   int row_length = 0;
