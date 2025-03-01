@@ -12,8 +12,6 @@
 #include <unordered_map>
 
 // Algorithm 2
-// BUGS: INPUTs [8, 1, 4, 3, 0, 7], [43, 45, 0, 44, 1, 46] IS NOT PRODUCING
-// CORRECT OUTPUT
 int minSwapsCouples(std::vector<int>& row) {
   int n = row.size();
   int swaps = 0;
