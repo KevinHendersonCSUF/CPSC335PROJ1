@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <unordered_map>
 
 // Algorithm 2
 // BUGS: INPUTs [8, 1, 4, 3, 0, 7], [43, 45, 0, 44, 1, 46] IS NOT PRODUCING
@@ -18,7 +19,7 @@ int minSwapsCouples(std::vector<int>& row) {
   int swaps = 0;
 
   // Create a map
-  std::vector<int> pos(n, 0);
+  std::unordered_map<int, int> pos;
   for (int i = 0; i < n; i++) {
     pos[row[i]] = i;
   }
@@ -63,7 +64,7 @@ int main() {
   }
   // prompt user to add numbers to row
   for (int i = 0; i < row_length; i++) {
-    std::cout << "enter number at index " << i << ": ";
+    std::cout << "Enter number at index " << i << ": ";
     std::cin >> temp;
     row.push_back(temp);
 
